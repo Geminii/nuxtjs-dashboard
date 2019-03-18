@@ -6,8 +6,9 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start",
+    "build": "NODE_ENV=production nuxt build",
+    "start": "HOST=0.0.0.0 PORT=3000 nuxt start",
+    "heroku-postbuild": "npm run build",
     "generate": "nuxt generate"
   },
   "dependencies": {
