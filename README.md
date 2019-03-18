@@ -4,6 +4,9 @@
 
 ![Product Gif](./static/vuetify-material-dashboard.gif)
 
+## Demo / Presentation
+[Live Demo !](https://nuxtjs-dashboard.herokuapp.com/)
+
 NuxtJs Dashboard Vuetify Material is a beautiful resource built over [NuxtJs](https://nuxtjs.org/) coupled with [Vuetify](https://vuetifyjs.com/en/). It will help you get started developing dashboards in no time. 
 This dashboard is the official Vuetify version of the Original [Material Dashboard](https://www.creative-tim.com/product/material-dashboard). Using the Dashboard is pretty simple but requires basic knowledge of [NuxtJs](https://nuxtjs.org/) and [Vuetify](https://vuetifyjs.com/en/).
 
