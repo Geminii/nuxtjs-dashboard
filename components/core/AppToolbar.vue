@@ -1,7 +1,6 @@
 <template>
   <v-toolbar
     id="core-toolbar"
-
     flat
     prominent
     style="background: #eee;"
@@ -37,13 +36,14 @@
           hide-details
           color="purple"
         />
-        <router-link
+        <nuxt-link
           v-ripple
           class="toolbar-items"
           to="/"
+          title="Dashboard"
         >
           <v-icon color="tertiary">mdi-view-dashboard</v-icon>
-        </router-link>
+        </nuxt-link>
         <v-menu
           bottom
           left
@@ -80,72 +80,88 @@
             </v-list>
           </v-card>
         </v-menu>
-        <router-link
+        <nuxt-link
           v-ripple
           class="toolbar-items"
           to="/user-profile"
+          title="User profile"
         >
           <v-icon color="tertiary">mdi-account</v-icon>
-        </router-link>
+        </nuxt-link>
+        <nuxt-link
+          v-ripple
+          class="toolbar-items"
+          to="/"
+          title="Logout"
+          @click.native="logout"
+        >
+          <v-icon color="tertiary">mdi-logout</v-icon>
+        </nuxt-link>
       </v-flex>
     </v-toolbar-items>
   </v-toolbar>
 </template>
 
 <script>
+  import { mapActions, mapGetters } from 'vuex'
 
-import {
-  mapMutations
-} from 'vuex'
-
-export default {
-  data: () => ({
-    notifications: [
-      'Mike, John responded to your email',
-      'You have 5 new tasks',
-      'You\'re now a friend with Andrew',
-      'Another Notification',
-      'Another One'
-    ],
-    title: 'Dashboard',
-    responsive: true,
-    responsiveInput: true
-  }),
-
-  watch: {
-    '$route' (val) {
-      console.log('val = ', val);
-      this.title = val.name === 'index' ? 'Dashboard' : val.name
-    }
-  },
-
-  mounted () {
-    this.onResponsiveInverted()
-    window.addEventListener('resize', this.onResponsiveInverted)
-  },
-  beforeDestroy () {
-    window.removeEventListener('resize', this.onResponsiveInverted)
-  },
-
-  methods: {
-    ...mapMutations('app', ['setDrawer', 'toggleDrawer']),
-    onClickBtn () {
-      this.setDrawer(!this.$store.state.app.drawer)
-    },
-    onClick () {
-      //
-    },
-    onResponsiveInverted () {
-      if (window.innerWidth < 991) {
-        this.responsive = true
-        this.responsiveInput = false
-      } else {
-        this.responsive = false
-        this.responsiveInput = true
+  export default {
+    data: () => ({
+      notifications: [
+        'Mike, John responded to your email',
+        'You have 5 new tasks',
+        'You\'re now a friend with Andrew',
+        'Another Notification',
+        'Another One'
+      ],
+      title: 'Dashboard',
+      responsive: true,
+      responsiveInput: true
+    }),
+    watch: {
+      '$route' (val) {
+        this.title = val.name
       }
+    },
+    computed: {
+      ...mapGetters({
+        drawer: 'app/getDrawer'
+      })
+    },
+    methods: {
+      ...mapActions({
+        setUsername: 'user/setUsername',
+        setDrawer: 'app/setDrawer'
+      }),
+
+      onClickBtn () {
+        this.setDrawer(!this.drawer)
+      },
+      onClick () {
+        // Do something
+      },
+      onResponsiveInverted () {
+        if (window.innerWidth < 991) {
+          this.responsive = true
+          this.responsiveInput = false
+        } else {
+          this.responsive = false
+          this.responsiveInput = true
+        }
+      },
+      async logout() {
+        await this.setUsername(null);
+        this.$router.push({ path: '/' });
+      }
+    },
+    mounted () {
+      this.onResponsiveInverted()
+      window.addEventListener('resize', this.onResponsiveInverted)
+    },
+    beforeDestroy () {
+      window.removeEventListener('resize', this.onResponsiveInverted)
     }
   }
-}
 </script>
 
 <style>

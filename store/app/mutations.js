@@ -1,14 +1,11 @@
 export default {
-  setDrawer(state, drawer) {
+  SET_DRAWER(state, drawer) {
     state.drawer = drawer;
   },
-  setImage(state, image) {
+  SET_IMAGE(state, image) {
     state.image = image;
   },
-  setColor(state, color) {
+  SET_COLOR(state, color) {
     state.color = color;
-  },
-  toggleDrawer(state, toggle) {
-    state.drawer = !toggle;
   }
 }

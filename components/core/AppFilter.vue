@@ -115,7 +115,7 @@
 
 <script>
   // Utilities
-  import { mapMutations, mapState } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
 
   export default {
     data: () => ({
@@ -135,11 +135,17 @@
     }),
 
     computed: {
-      ...mapState('app', ['image', 'color'])
+      ...mapGetters({
+        image: 'app/getImage',
+        color: 'app/getColor'
+      })
     },
 
     methods: {
-      ...mapMutations('app', ['setImage', 'setColor'])
+      ...mapActions({
+        setImage: 'app/setImage',
+        setColor: 'app/setColor'
+      }),
     }
   }
 </script>

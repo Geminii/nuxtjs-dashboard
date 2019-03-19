@@ -236,7 +236,7 @@
   import materialNotification from '~/components/material/AppNotification'
 
   export default {
-    name: 'Notifications',
+    layout: 'dashboard',
     components: {
       materialCard,
       materialNotification

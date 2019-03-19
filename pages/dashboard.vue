@@ -365,6 +365,8 @@
   import materialStatsCard from '~/components/material/AppStatsCard'
 
   export default {
+    layout: 'dashboard',
+    middleware: 'authentication',
     components: {
       materialCard,
       materialChartCard,
