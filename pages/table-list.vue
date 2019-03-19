@@ -86,6 +86,7 @@
   import materialCard from '~/components/material/AppCard'
 
   export default {
+    layout: 'dashboard',
     components: {
       materialCard
     },
