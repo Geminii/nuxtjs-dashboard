@@ -68,7 +68,7 @@
 
 <script>
   // Utilities
-  import { mapMutations, mapState } from 'vuex'
+  import { mapActions, mapGetters } from 'vuex'
 
   export default {
     data() {
@@ -76,7 +76,7 @@
         logo: '/vuetifylogo.png',
         links: [
           {
-            to: '/',
+            to: '/dashboard',
             icon: 'mdi-view-dashboard',
             text: 'Dashboard'
           },
@@ -115,12 +115,18 @@
       }
     },
     computed: {
-      ...mapState('app', ['image', 'color']),
+      ...mapGetters({
+        image: 'app/getImage',
+        color: 'app/getColor',
+        drawer: 'app/getDrawer'
+      }),
+
+
       inputValue: {
-        get () {
-          return this.$store.state.app.drawer
+        get() {
+          return this.drawer
         },
-        set (val) {
+        set(val) {
           this.setDrawer(val)
         }
       }
@@ -133,13 +139,12 @@
       window.removeEventListener('resize', this.onResponsiveInverted)
     },
     methods: {
-      ...mapMutations('app', ['setDrawer', 'toggleDrawer']),
-      onResponsiveInverted () {
-        if (window.innerWidth < 991) {
-          this.responsive = true
-        } else {
-          this.responsive = false
-        }
+      ...mapActions({
+        setDrawer: 'app/setDrawer'
+      }),
+
+      onResponsiveInverted() {
+        this.responsive = window.innerWidth < 991;
       }
     }
   }

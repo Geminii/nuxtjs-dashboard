@@ -71,7 +71,7 @@
   import materialCard from '~/components/material/AppCard'
 
   export default {
-    name: 'Typography',
+    layout: 'dashboard',
     components: {
       materialCard
     },

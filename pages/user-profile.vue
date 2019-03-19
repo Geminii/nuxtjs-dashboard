@@ -128,9 +128,10 @@
             >
           </v-avatar>
           <v-card-text class="text-xs-center">
-            <h6 class="category text-gray font-weight-thin mb-3">CEO / CO-FOUNDER</h6>
-            <h4 class="card-title font-weight-light">Alec Thompson</h4>
-            <p class="card-description font-weight-light">Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...</p>
+            <h6 class="category text-gray font-weight-thin mb-3">{{ user.function }}</h6>
+            <h4 class="card-title font-weight-light">{{ fullname }}</h4>
+            <p class="card-description font-weight-light">{{ user.description }}</p>
+            <blockquote class="blockquote">{{ user.citation }}</blockquote>
             <v-btn
               color="success"
               round
@@ -144,11 +145,19 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   import materialCard from '~/components/material/AppCard'
 
   export default {
+    layout: 'dashboard',
     components: {
       materialCard
+    },
+    computed: {
+      ...mapGetters({
+        user: 'user/getUser',
+        fullname: 'user/getFullname',
+      })
     }
   }
 </script>
