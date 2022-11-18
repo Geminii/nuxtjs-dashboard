@@ -15,7 +15,7 @@
     "@mdi/font": "^3.6.95",
     "@nuxtjs/axios": "^5.5.3",
     "cross-env": "^5.2.0",
-    "nuxt": "^2.8.0",
+    "nuxt": "^2.15.8",
     "vue-chartist": "^2.2.0",
     "vuetify": "^1.5.14",
     "vuetify-loader": "^1.2.2"
